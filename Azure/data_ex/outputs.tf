@@ -14,3 +14,4 @@ output "gimmie_key" {
   description = "Private Key in PEM format"
   sensitive = true
 }
+# To get the corresponding private key, run terraform output gimmie_key
