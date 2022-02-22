@@ -31,5 +31,11 @@ variable "sgname" {
 
 variable "vmsize" {
     type = string
+    default = ["Standard_B2s"]
     description = "The instance size"
+}
+
+variable "vmname" {
+    type = string
+    description = "The name of the Virtual Machine"
 }

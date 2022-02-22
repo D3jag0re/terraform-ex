@@ -3,11 +3,11 @@ output "vm_id_out" {
 }
 
 output "priv_ip" {
-value = azurerm_network_interface.netinterface.private_ip_addresses
+  value = azurerm_network_interface.netinterface.private_ip_addresses
 }
 
 output "pub_ip" {
-value = azurerm_public_ip.myterraformpublicip.id
+  value = azurerm_public_ip.myterraformpublicip.id
 }
 
 output "tls_private_key" {
