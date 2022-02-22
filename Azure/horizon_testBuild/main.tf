@@ -60,7 +60,7 @@ resource "azurerm_network_interface" "netinterface" {
 
   ip_configuration {
     name                          = "internal"
-    #subnet_id                     = var.subnetid
+    subnet_id                     = data.azurerm_subnet.vmsubnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.myterraformpublicip.id
   }
