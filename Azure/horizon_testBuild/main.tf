@@ -49,7 +49,6 @@ resource "azurerm_public_ip" "myterraformpublicip" {
 # Attach Network Security Group
 data "azurerm_network_security_group" "myterraformnsg" {
   name                = var.sgname
-  location            = var.location
   resource_group_name = var.rgname
 }
 
@@ -61,7 +60,7 @@ resource "azurerm_network_interface" "netinterface" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = var.subnetid
+    #subnet_id                     = var.subnetid
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.myterraformpublicip.id
   }
@@ -70,7 +69,7 @@ resource "azurerm_network_interface" "netinterface" {
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "nsg" {
   network_interface_id      = azurerm_network_interface.netinterface.id
-  network_security_group_id = azurerm_network_security_group.myterraformnsg.id
+  network_security_group_id = data.azurerm_network_security_group.myterraformnsg.id
 }
 
 
@@ -108,17 +107,19 @@ resource "azurerm_linux_virtual_machine" "hz_vm" {
     version   = "latest"
   }
 
-  computer_name                   = "horizon_test_env_vm"
+  computer_name                   = "horizon-test-env-vm"
   admin_username                  = "azureuser"
   disable_password_authentication = true
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = tls_private_key.example_ssh.public_key_openssh
+    public_key = tls_private_key.hz_ssh.public_key_openssh
   }
 
   tags = {
     environment = "horizon_test_env"
   }
 }
+
+##
 
