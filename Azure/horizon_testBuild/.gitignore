@@ -1,2 +1,9 @@
 var.tfvars
 *.tfvars
+tfplan
+.terraform/**
+terraform/**
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+Azure/horizon_testBuild/.terraform/*
