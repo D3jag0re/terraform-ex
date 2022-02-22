@@ -103,7 +103,7 @@ resource "azurerm_linux_virtual_machine" "hz_vm" {
   source_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "10_04-lts"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
